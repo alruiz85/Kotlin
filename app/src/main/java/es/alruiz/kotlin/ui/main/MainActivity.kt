@@ -1,17 +1,18 @@
-package es.alruiz.kotlin.main
+package es.alruiz.kotlin.ui.main
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import es.alruiz.kotlin.R
-import es.alruiz.kotlin.recycler.RecyclerActivity
+import es.alruiz.kotlin.ui.weather.RecyclerActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity() {
 
     val TAG: String = MainActivity::class.java.simpleName
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
