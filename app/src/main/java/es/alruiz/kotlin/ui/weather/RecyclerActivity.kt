@@ -17,12 +17,20 @@ class RecyclerActivity : AppCompatActivity() {
 
         forecast_list.layoutManager = LinearLayoutManager(this)
 
-        doAsync() {
-            val result = RequestForecastCommand("26007").execute()
+        btn_get_weather.setOnClickListener {
+            val code: String = et_zip_code.text.toString()
+            getWeatherPrevision(code)
+        }
+
+
+    }
+
+    fun getWeatherPrevision(zipCode: String) {
+        doAsync {
+            val result = RequestForecastCommand(zipCode).execute()
             uiThread {
                 forecast_list.adapter = ForecastListAdapter(result)
             }
         }
-
     }
 }
