@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import es.alruiz.kotlin.R
 import es.alruiz.kotlin.domain.commands.RequestForecastCommand
-import es.alruiz.kotlin.domain.model.Forecast
 import kotlinx.android.synthetic.main.activity_recycler.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.toast
@@ -29,15 +28,10 @@ class RecyclerActivity : AppCompatActivity() {
 
     fun getWeatherPrevision(zipCode: String) {
         doAsync {
-            val result = RequestForecastCommand("94043").execute()
+            val result = RequestForecastCommand(zipCode).execute()
             uiThread {
-                forecast_list.adapter = ForecastListAdapter(result,
-                        object : ForecastListAdapter.OnItemClickListener {
-                            override fun invoke(forecast: Forecast) {
-                                toast(forecast.date)
-                            }
-                        })
-
+                val adapter = ForecastListAdapter(result) { toast(result.city) }
+                forecast_list.adapter = adapter
             }
         }
     }
